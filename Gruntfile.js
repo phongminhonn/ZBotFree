@@ -1,12 +1,21 @@
 module.exports = function(grunt) {
-    // Cấu hình các tác vụ Grunt ở đây
+    // Cấu hình các tác vụ Grunt
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        // Thêm cấu hình cho các tác vụ ở đây
+        uglify: {
+            options: {
+                mangle: false // Không làm rối tên biến
+            },
+            my_target: {
+                files: {
+                    'dest/output.min.js': ['src/input.js'] // Đường dẫn tới tệp nguồn và tệp đầu ra
+                }
+            }
+        }
     });
 
-    // Tải các plugin Grunt
-    grunt.loadNpmTasks('grunt-contrib-uglify'); // Ví dụ, tải plugin uglify
+    // Tải plugin
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Định nghĩa các tác vụ mặc định
     grunt.registerTask('default', ['uglify']);
